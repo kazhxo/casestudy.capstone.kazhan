@@ -22,13 +22,20 @@ import java.security.Principal;
 import java.util.List;
 import java.util.UUID;
 
+//Indicated this class is a Spring MVC Controller, t handles HTTP requests and contains methods
+// to map URL patterns
+
 @Controller
 public class MainController {
 
     private final UserService userService;
     private final PostService postService;
+
+    //Used to simplify sending messages to Websocket destinations
     private final SimpMessagingTemplate messagingTemplate;
 
+
+    //injecting instances of services and messaging Template into the MainController
 
     @Autowired
     public MainController(UserService userService, PostService postService, SimpMessagingTemplate messagingTemplate) {
@@ -38,6 +45,7 @@ public class MainController {
 
     }
 
+    //For future development of associating users with a profile
     @GetMapping("/profile")
     public String userProfile(Model model, Principal principal) {
         // Get the authenticated user
@@ -53,10 +61,13 @@ public class MainController {
     }
 
 
+    //After saving a new post, we use messagingTemplate.convertAndSend to broadcast a message
+    //to the "/topic/public" destination, meaning any websocket client subscrbed to it will
+    //recieves it, Specifically it sends a message indicating a new post has been added and shows the post
 
-
-
-
+    //Handles POST request to "/home/post"
+    //creates a new post, associates it wth the authenticated user and saves it
+    //redrects to main pagr after creation
     @PostMapping("/home/post")
     public String createPost(@RequestParam String content, Principal principal, Model model) {
         // Creating a new post and save it
@@ -78,13 +89,16 @@ public class MainController {
     }
 
 
-
-
+    //Handles post requests to the URL
     @PostMapping("/home/post-and-redirect")
     public String createPostAndRedirect(@RequestParam String content, Principal principal) {
         // Processing the post and redirecting to the main page
         return "redirect:/main";
     }
+
+    //Handles GET Requests to /main, checks if the user is authenticates and if so
+    //retrieves all posts and adds to the model
+
 
     @GetMapping("/main")
     public String mainPage(Model model, Principal principal) {
@@ -101,18 +115,16 @@ public class MainController {
 
             return "main";
         } else {
-            // User is not authenticated,
-            return "redirect:/login"; // Redirect to login page
+            // User is not authenticated,// Redirect to login page
+            return "redirect:/login";
         }
     }
 
+    //Handles get request to login
     @GetMapping("/login")
     public String login() {
         return "login";
     }
-
-
-
 
 
     // handle the login form submission here
@@ -120,11 +132,11 @@ public class MainController {
     public String processLogin(@RequestParam String username, @RequestParam String password, Model model) {
 
 
-
-            return "/main";
+        return "/main";
 
     }
 
+    //retrieves authenticated users information and adds to model
     @GetMapping("/home")
     public String home(Model model, Principal principal) {
         if (principal != null) {
@@ -140,6 +152,8 @@ public class MainController {
         return "home";
     }
 
+    //handles get requests to register
+    //creates new userDTO object and adds to model
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         UserDTO userDTO = new UserDTO();
@@ -147,8 +161,12 @@ public class MainController {
         return "register";
     }
 
+    //handles post requests to /register/save
+
     @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult result, Model model) {
+        //checks for validation error and duplicates
+        
         if (result.hasErrors()) {
             model.addAttribute("user", userDTO);
             return "register";
