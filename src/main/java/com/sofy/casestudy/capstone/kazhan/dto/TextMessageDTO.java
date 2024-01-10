@@ -1,5 +1,5 @@
 package com.sofy.casestudy.capstone.kazhan.dto;
-
+//For further development purposes
 public class TextMessageDTO {
 
     private String content;

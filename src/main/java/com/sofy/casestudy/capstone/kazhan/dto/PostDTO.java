@@ -1,5 +1,7 @@
 package com.sofy.casestudy.capstone.kazhan.dto;
 
+
+//
 public class PostDTO {
 
     private Long postId;

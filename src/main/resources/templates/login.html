@@ -4,30 +4,101 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4b6cb7, #7b50a0, #be60ad); /* Vibrant Blue, White, and Purple gradient */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 450px;
+        }
+
+        h1 {
+            color: #3f51b5; /* Vibrant Blue */
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-size: 14px;
+            color: #3f51b5; /* Vibrant Blue */
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #d3d3d3;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #3f51b5; /* Vibrant Blue */
+            color: #ffffff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #303f9f; /* Slightly Darker Blue on hover */
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ffffff; /* White */
+        }
+
+        a {
+            color: #9c27b0; /* Purple */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Login</h1>
+<div class="login-container">
+    <h1>Login</h1>
 
-<form th:action="@{/login}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-    <br>
+    <form th:action="@{/login}" method="post">
+        <label for="username" style="color: #3f51b5;">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <br>
+        <label for="password" style="color: #3f51b5;">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
 
-    <button type="submit">Login</button>
+        <button type="submit">Log In</button>
+    </form>
 
-
-</form>
-
-<!-- Add a link to the dashboard or home page -->
-<p>If you don't have an account, you can <a th:href="@{/register}">register here</a>.</p>
-
-<!-- Add a link to the dashboard or home page -->
-<p>Forgot your password? <a th:href="@{/forgot-password}">Reset it here</a>.</p>
-
+    <p><a th:href="@{/register}">Don't have an account? Sign Up</a></p>
+</div>
+<!-- Include  external js file -->
+<script src="login.js"></script>
 </body>
 </html>

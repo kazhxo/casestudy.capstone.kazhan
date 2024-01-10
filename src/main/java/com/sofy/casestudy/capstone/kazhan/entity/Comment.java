@@ -2,7 +2,7 @@ package com.sofy.casestudy.capstone.kazhan.entity;
 
 
 import jakarta.persistence.*;
-
+//For further development purposes
 @Entity
 @Table(name="comments")
 public class Comment {

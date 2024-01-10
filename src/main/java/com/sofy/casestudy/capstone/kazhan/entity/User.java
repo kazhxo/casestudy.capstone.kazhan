@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+//This class represents the entity user in the sql table
+//It holds values related to the User
 @Entity
 @Table(name="users")
 public class User {

@@ -3,6 +3,9 @@ package com.sofy.casestudy.capstone.kazhan.entity;
 
 import jakarta.persistence.*;
 
+
+//This is the post entity class which holds the data relating to the post
+//Entity annotation creates table in sql for posts
 @Entity
 @Table(name="posts")
 public class Post {

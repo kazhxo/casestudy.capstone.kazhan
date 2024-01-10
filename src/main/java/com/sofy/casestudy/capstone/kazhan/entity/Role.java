@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+//Purpose of role class is to determine the role of the user for authorization purposes
+//ex: USER and ADMIN roles
+
 @Table
 @Entity
 public class Role {

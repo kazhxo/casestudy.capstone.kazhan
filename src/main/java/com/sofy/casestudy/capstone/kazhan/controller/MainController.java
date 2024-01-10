@@ -66,7 +66,7 @@ public class MainController {
         post.setUser(user);
         postService.savePost(post);
 
-        // Broadcast the new post to all subscribers
+        // Broadcast the new post to all users
         messagingTemplate.convertAndSend("/topic/public", "New post added by " + user.getUsername());
 
         // Get all posts for the main page
@@ -85,24 +85,6 @@ public class MainController {
         // Processing the post and redirecting to the main page
         return "redirect:/main";
     }
-
-/*
-    @PostMapping("/post")
-    public String createPost(@RequestParam String content, Principal principal) {
-        // Creating a new post and save it
-        User user = userService.findByUsername(principal.getName());
-        Post post = new Post();
-        post.setContent(content);
-        post.setUser(user);
-        postService.savePost(post);
-
-        // Broadcast the new post to all subscribers
-        messagingTemplate.convertAndSend("/topic/public", "New post added by " + user.getUsername());
-
-        return "redirect:/user/profile";
-    }
-
- */
 
     @GetMapping("/main")
     public String mainPage(Model model, Principal principal) {
@@ -142,16 +124,6 @@ public class MainController {
             return "/main";
 
     }
-    /*
-    @GetMapping("/home")
-    public String home(Principal principal) {
-        UserDetails userDetails = (UserDetails) ((Authentication) principal).getPrincipal();
-        System.out.println("Authorities: " + userDetails.getAuthorities());
-        return "home";
-    }
-
-
-     */
 
     @GetMapping("/home")
     public String home(Model model, Principal principal) {

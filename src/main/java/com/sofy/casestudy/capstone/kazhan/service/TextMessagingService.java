@@ -3,7 +3,7 @@ package com.sofy.casestudy.capstone.kazhan.service;
 import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
-
+//For further development purposes
 @Service
 public class TextMessagingService {
 

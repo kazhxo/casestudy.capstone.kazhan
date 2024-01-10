@@ -1,6 +1,6 @@
 package com.sofy.casestudy.capstone.kazhan.entity;
 
-
+//For further development purposes
 public class TextMessage {
 
     private String content;

@@ -2,27 +2,104 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Home Page</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body class="bg-light">
+  <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4b6cb7, #7b50a0, #be60ad); /* Vibrant Blue, White, and Purple gradient */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
 
-<div class="container mt-5">
-  <h1 class="mb-4">Welcome, <span th:text="${user.username}"></span>!</h1>
+        .home-container {
+            background: linear-gradient(to right, #4b6cb7, #7b50a0, #be60ad); /* Match the registration page color */
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 600px;
+        }
+
+        h1 {
+            color: #ffffff; /* White */
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: linear-gradient(to right, #ffffff, #f8f8f8); /* Light Grey to White gradient */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #d3d3d3;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: #f8f8f8; /* Light Grey */
+        }
+
+        button {
+            background: linear-gradient(to right, #4c8bf5, #3666c4); /* Light Blue to Slightly Darker Blue gradient */
+            color: #ffffff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #3666c4, #4c8bf5); /* Slightly Darker Blue to Light Blue gradient on hover */
+        }
+
+        .card {
+            background: linear-gradient(to right, #ffffff, #f8f8f8); /* Light Grey to White gradient */
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            color: #4c8bf5; /* Light Blue */
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="home-container">
+  <h1>Welcome, <span th:text="${user.username}" style="color: #3f51b5;"></span>!</h1>
 
   <!-- Post form -->
-  <div class="card mb-3">
-    <div class="card-body">
-      <form method="post" action="/home/post" class="mb-3">
-        <div class="form-group">
-                    <textarea name="content" rows="4" cols="50" class="form-control"
-                              placeholder="What's on your mind?"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Post</button>
-      </form>
+  <form method="post" action="/home/post" class="mb-3">
+    <div class="form-group">
+      <textarea name="content" rows="4" cols="50" class="form-control" placeholder="What's on your mind?"></textarea>
     </div>
-  </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+  </form>
 
   <!-- Display existing posts -->
   <div th:each="post : ${posts}" class="card mb-3">
