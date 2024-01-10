@@ -9,7 +9,7 @@ CSS, and JavaScript for the front end.
 
 Features
 User Authentication: Secure user authentication ensures that each user has a personalized experience.
-News Feed: Users can post updates to the news feed, providing a real-time platform for communication.
+News Feed: Users can post updates to the news feed, providing a platform for communication.
 WebSocket Integration: WebSocket enables updates to the news feed for all users subscribed
 User Profiles: Users have profiles that showcase their posts and relevant information.
 Responsive Design: The application is designed to be responsive
